@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/searchTextView"
+        android:id="@+id/enterNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -30,14 +30,36 @@
         app:layout_constraintStart_toStartOf="@+id/titleTextView"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/options"
+        app:layout_constraintBottom_toTopOf="@+id/startSearchButton"
+        app:layout_constraintEnd_toEndOf="@+id/searchTextView"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/searchTextView"
+        app:layout_constraintTop_toBottomOf="@+id/searchTextView" />
+
     <Button
         android:id="@+id/startSearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="92dp"
         android:text="Начать поиск"
         app:layout_constraintEnd_toEndOf="@+id/searchTextView"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="@+id/searchTextView"
         app:layout_constraintTop_toBottomOf="@+id/searchTextView" />
+
+    <TextView
+        android:id="@+id/searchTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Искать по персонажу"
+        app:layout_constraintEnd_toEndOf="@+id/enterNameTextView"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/enterNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/enterNameTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SWAPI</string>
+    <string-array name="options">
+        <item>персонажу</item>
+        <item>звездолету</item>
+    </string-array>>
 </resources>
