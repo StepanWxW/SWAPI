@@ -2,10 +2,11 @@
     <string name="app_name">SWAPI</string>
     <string name="name">Имя:</string>
     <string name="gender">Пол:</string>
-    <string name="countStarships">Количество звездолетов:</string>
+    <string name="countStarships">Кол-во звездолетов:</string>
     <string name="model">модель</string>
     <string name="manufacturer">производитель</string>
     <string name="passengers">пассажиры</string>
+    <string name="add">+</string>
     <string-array name="options">
         <item>персонажу</item>
         <item>звездолету</item>
