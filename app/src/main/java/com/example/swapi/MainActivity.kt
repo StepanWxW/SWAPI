@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
@@ -17,9 +18,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var apiClient: StarWarsApiClient
 
-    private lateinit var searchTextView: TextView
+    private lateinit var enterNameTextView: EditText
     private lateinit var startSearchButton: Button
     private lateinit var spinner: Spinner
+
     private lateinit var character: Character
 
     private lateinit var characterLayout: LinearLayout
@@ -37,15 +39,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        searchTextView = findViewById(R.id.searchTextView)
+        enterNameTextView = findViewById(R.id.enterNameTextView)
         startSearchButton = findViewById(R.id.startSearchButton)
+        starshipLayout = findViewById(R.id.starshipLayout)
+        characterLayout = findViewById(R.id.characterLayout)
         spinner = findViewById(R.id.spinner)
+
+        val nameTextView = characterLayout.findViewById<TextView>(R.id.nameTextView)
+        val genderTextView = characterLayout.findViewById<TextView>(R.id.genderTextView)
+        val countStarshipsTextView = characterLayout.findViewById<TextView>(R.id.countStarshipsTextView)
+
 
         apiClient = StarWarsApiClient()
 
         startSearchButton.setOnClickListener {
             val selectedOption = spinner.selectedItem as String
-            val searchString = searchTextView.text.toString()
+            val searchString = enterNameTextView.text.toString()
             if(selectedOption == "персонажу"){
                 lifecycleScope.launch {
                     val characterResponse = apiClient.searchCharacters(searchString)
@@ -53,9 +62,9 @@ class MainActivity : AppCompatActivity() {
                         character = characterResponse.results[0]
                         starshipLayout.visibility = View.GONE
                         characterLayout.visibility = View.VISIBLE
-                        characterNameTextView.text = character.name
+                        nameTextView.text = character.name
                         genderTextView.text = character.gender
-//                        countStarshipsTextView.text = character.starships.size.toString()
+                        countStarshipsTextView.text = character.starships.size.toString()
                     }
                 }
             }
