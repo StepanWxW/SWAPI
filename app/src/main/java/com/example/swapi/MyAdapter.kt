@@ -1,5 +1,6 @@
 package com.example.swapi
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swapi.model.Character
+import com.example.swapi.model.CharacterDB
 
-class MyAdapter(private val charactersList: List<Character>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(private val charactersList: List<Character>, context: Context) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
+    private val db = CharacterDatabaseHelper(context)
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
@@ -29,8 +33,8 @@ class MyAdapter(private val charactersList: List<Character>) : RecyclerView.Adap
         holder.countStarshipsTextView.text = currentItem.starships.size.toString()
 
         holder.addToFavoritesButton.setOnClickListener {
-            // Здесь можно выполнить действие при добавлении в избранное
-            // Например, вы можете использовать currentItem для получения информации об элементе
+            val characterDB = CharacterDB(currentItem.name, "male", currentItem.starships.size)
+            db.insertCharacter(characterDB)
         }
     }
 

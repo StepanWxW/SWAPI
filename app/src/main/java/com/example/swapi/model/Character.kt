@@ -20,8 +20,9 @@ data class Character(
     @JsonProperty("created")val created: String?,
     @JsonProperty("edited")val edited: String?,
     @JsonProperty("url")val url: String?
-//    var isFavorite: Boolean = false // По умолчанию персонаж не является избранным
-)
+){
+
+}
 
 //data class Character(
 //    val name: String,

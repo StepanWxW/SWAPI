@@ -65,13 +65,18 @@ class MainActivity : AppCompatActivity() {
             val searchString = enterNameTextView.text.toString()
             if(selectedOption == "персонажу"){
                 lifecycleScope.launch {
-                    val characterResponse = apiClient.searchCharacters(searchString)
-                    if(characterResponse.results.isNotEmpty()){
-                        adapter = MyAdapter(characterResponse.results)
-                        recyclerView.adapter = adapter
+                    try {
+                        val characterResponse = apiClient.searchCharacters(searchString)
+                        if(characterResponse.results.isNotEmpty()){
+                            adapter = MyAdapter(characterResponse.results)
+                            recyclerView.adapter = adapter
 
-                        recyclerView.layoutManager = LinearLayoutManager(context)
+                            recyclerView.layoutManager = LinearLayoutManager(context)
+                        }
+                    } catch (e: Exception){
+                        println("ошибка")
                     }
+
 
 //                    if(characterResponse.results.isNotEmpty()) {
 //                        character = characterResponse.results[0]
