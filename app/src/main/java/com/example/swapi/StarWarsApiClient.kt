@@ -1,7 +1,6 @@
 
 import com.example.swapi.model.ApiService
 import com.example.swapi.model.CharacterResponse
-import com.example.swapi.model.PlanetResponse
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 
@@ -22,8 +21,8 @@ class StarWarsApiClient {
         return apiService.searchCharacters(query)
     }
 
-    suspend fun searchPlanets(query: String): PlanetResponse {
-        return apiService.searchPlanets(query)
-    }
+//    suspend fun searchPlanets(query: String): PlanetResponse {
+//        return apiService.searchPlanets(query)
+//    }
 }
 

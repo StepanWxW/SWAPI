@@ -1,8 +1,8 @@
 package com.example.swapi.model
 
-data class PlanetResponse(
+data class StarshipResponse(
     val count: Int,
     val next: String?,
     val previous: String?,
-    val results: List<Planet>
+    val results: List<Starship>
 )

@@ -8,6 +8,8 @@ interface ApiService {
     @GET("people/")
     suspend fun searchCharacters(@Query("search") query: String): CharacterResponse
 
-    @GET("planets/")
-    suspend fun searchPlanets(@Query("search") query: String): PlanetResponse
+    @GET("starships/")
+    suspend fun searchStarships(@Query("search") query: String): CharacterResponse
+//    @GET("planets/")
+//    suspend fun searchPlanets(@Query("search") query: String): PlanetResponse
 }

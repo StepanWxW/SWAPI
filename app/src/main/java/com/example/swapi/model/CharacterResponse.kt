@@ -5,4 +5,7 @@ data class CharacterResponse(
     val next: String?,
     val previous: String?,
     val results: List<Character>
-)
+) {
+    // Пустой конструктор без аргументов
+    constructor() : this(0, null, null, emptyList())
+}
