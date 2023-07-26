@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swapi.model.Character
 import com.example.swapi.model.CharacterDB
 
-class MyAdapter(private val charactersList: List<Character>, context: Context) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(private val charactersList: List<Character>, private val context: Context) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     private val db = CharacterDatabaseHelper(context)
 
@@ -35,6 +36,7 @@ class MyAdapter(private val charactersList: List<Character>, context: Context) :
         holder.addToFavoritesButton.setOnClickListener {
             val characterDB = CharacterDB(currentItem.name, "male", currentItem.starships.size)
             db.insertCharacter(characterDB)
+            Toast.makeText(context, "Добавили в избранное", Toast.LENGTH_LONG).show()
         }
     }
 

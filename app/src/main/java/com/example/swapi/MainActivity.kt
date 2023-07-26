@@ -2,6 +2,7 @@ package com.example.swapi
 
 import StarWarsApiClient
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     try {
                         val characterResponse = apiClient.searchCharacters(searchString)
                         if(characterResponse.results.isNotEmpty()){
-                            adapter = MyAdapter(characterResponse.results)
+                            adapter = MyAdapter(characterResponse.results, context)
                             recyclerView.adapter = adapter
 
                             recyclerView.layoutManager = LinearLayoutManager(context)
@@ -92,5 +93,10 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    fun onFavoritesButtonClick(view: View) {
+        val intent = Intent(this, FavoritesActivity::class.java)
+        startActivity(intent)
     }
 }
