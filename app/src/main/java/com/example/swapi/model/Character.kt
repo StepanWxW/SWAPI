@@ -20,7 +20,6 @@ data class Character(
     @JsonProperty("edited") val edited: String? = null,
     @JsonProperty("url") val url: String? = null,
 ) {
-    // Второй конструктор, использующий именованные параметры
     constructor(name: String?, gender: String?, countShip: Int) : this(
         name = name,
         gender = gender,

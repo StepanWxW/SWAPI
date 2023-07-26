@@ -5,4 +5,6 @@ data class StarshipResponse(
     val next: String?,
     val previous: String?,
     val results: List<Starship>
-)
+){
+    constructor() : this(0, null, null, emptyList())
+}

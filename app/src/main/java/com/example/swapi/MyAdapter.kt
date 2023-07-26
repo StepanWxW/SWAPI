@@ -12,7 +12,7 @@ import com.example.swapi.model.Character
 
 class MyAdapter(private val charactersList: List<Character>, private val context: Context) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    private val db = CharacterDatabaseHelper(context)
+    private val db = DatabaseHelper(context)
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)

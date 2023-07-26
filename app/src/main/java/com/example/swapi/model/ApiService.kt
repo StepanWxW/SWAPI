@@ -9,7 +9,7 @@ interface ApiService {
     suspend fun searchCharacters(@Query("search") query: String): CharacterResponse
 
     @GET("starships/")
-    suspend fun searchStarships(@Query("search") query: String): CharacterResponse
+    suspend fun searchStarships(@Query("search") query: String): StarshipResponse
 //    @GET("planets/")
 //    suspend fun searchPlanets(@Query("search") query: String): PlanetResponse
 }

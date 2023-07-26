@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.example.swapi.model.Character
 import com.example.swapi.model.Starship
 
-class CharacterDatabaseHelper(context: Context) :
+class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
@@ -53,7 +53,7 @@ class CharacterDatabaseHelper(context: Context) :
         val values = ContentValues().apply {
             put(COLUMN_NAME, character.name)
             put(COLUMN_GENDER, character.gender)
-//            put(COLUMN_STARSHIPS_COUNT, character.countShip)
+            put(COLUMN_STARSHIPS_COUNT, character.countShip)
         }
         db.insert(TABLE_NAME_CHARACTERS, null, values)
         db.close()
@@ -90,24 +90,24 @@ class CharacterDatabaseHelper(context: Context) :
         return characters
     }
 
-//    @SuppressLint("Range")
-//    fun getAllStarships(): List<Starship> {
-//        val starships = mutableListOf<Starship>()
-//        val db = readableDatabase
-//        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME_STARSHIPS", null)
-//
-//        while (cursor.moveToNext()) {
-//            val name = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_NAME))
-//            val model = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_MODEL))
-//            val manufacturer = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_MANUFACTURER))
-//            val passengers = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_PASSENGERS))
-//
-//            val starship = Starship(name, model, manufacturer, passengers)
-//            starships.add(starship)
-//        }
-//
-//        cursor.close()
-//        db.close()
-//        return starships
-//    }
+    @SuppressLint("Range")
+    fun getAllStarships(): List<Starship> {
+        val starships = mutableListOf<Starship>()
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME_STARSHIPS", null)
+
+        while (cursor.moveToNext()) {
+            val name = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_NAME))
+            val model = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_MODEL))
+            val manufacturer = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_MANUFACTURER))
+            val passengers = cursor.getString(cursor.getColumnIndex(COLUMN_STARSHIP_PASSENGERS))
+
+            val starship = Starship(name, model, manufacturer, passengers)
+            starships.add(starship)
+        }
+
+        cursor.close()
+        db.close()
+        return starships
+    }
 }

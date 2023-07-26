@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var startSearchButton: Button
     private lateinit var spinner: Spinner
     private val context = this
-//    private val itemList = mutableListOf<Item>()
+
+    //    private val itemList = mutableListOf<Item>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MyAdapter
 
@@ -64,18 +65,19 @@ class MainActivity : AppCompatActivity() {
         startSearchButton.setOnClickListener {
             val selectedOption = spinner.selectedItem as String
             val searchString = enterNameTextView.text.toString()
-            if(selectedOption == "персонажу"){
+            if (selectedOption == "персонажу") {
                 lifecycleScope.launch {
                     try {
                         val characterResponse = apiClient.searchCharacters(searchString)
-                        if(characterResponse.results.isNotEmpty()){
+                        if (characterResponse.results.isNotEmpty()) {
+                            recyclerView.adapter = null
                             adapter = MyAdapter(characterResponse.results, context)
                             recyclerView.adapter = adapter
 
                             recyclerView.layoutManager = LinearLayoutManager(context)
                         }
-                    } catch (e: Exception){
-                        println("ошибка")
+                    } catch (e: Exception) {
+                        println("ошибка +$e")
                     }
 
 
@@ -89,8 +91,21 @@ class MainActivity : AppCompatActivity() {
 //                    }
                 }
             }
-            if(selectedOption == "звездолету"){
+            if (selectedOption == "звездолету") {
+                lifecycleScope.launch {
+                    try {
+                        val starshipResponse = apiClient.searchStarships(searchString)
+                        if (starshipResponse.results.isNotEmpty()) {
+                            recyclerView.adapter = null
+                            val adapter = MyStarshipAdapter(starshipResponse.results, context)
+                            recyclerView.adapter = adapter
 
+                            recyclerView.layoutManager = LinearLayoutManager(context)
+                        }
+                    } catch (e: Exception) {
+                        println("ошибка +$e")
+                    }
+                }
             }
         }
     }
