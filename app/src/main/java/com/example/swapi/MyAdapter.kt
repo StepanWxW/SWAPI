@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swapi.model.Character
-import com.example.swapi.model.CharacterDB
 
 class MyAdapter(private val charactersList: List<Character>, private val context: Context) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
@@ -32,11 +31,14 @@ class MyAdapter(private val charactersList: List<Character>, private val context
         holder.nameTextView.text = currentItem.name
         holder.genderTextView.text = currentItem.gender
         holder.countStarshipsTextView.text = currentItem.starships.size.toString()
-
-        holder.addToFavoritesButton.setOnClickListener {
-            val characterDB = CharacterDB(currentItem.name, "male", currentItem.starships.size)
-            db.insertCharacter(characterDB)
-            Toast.makeText(context, "Добавили в избранное", Toast.LENGTH_LONG).show()
+        if(currentItem.url !=  null){
+            holder.addToFavoritesButton.setOnClickListener {
+                val character = Character(currentItem.name, "male", currentItem.starships.size)
+                db.insertCharacter(character)
+                Toast.makeText(context, "Добавили в избранное", Toast.LENGTH_LONG).show()
+            }
+        } else {
+            holder.addToFavoritesButton.visibility = View.GONE
         }
     }
 

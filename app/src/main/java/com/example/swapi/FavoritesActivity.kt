@@ -12,9 +12,9 @@ class FavoritesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_favorites)
 
         val db = CharacterDatabaseHelper(this)
-        val characterList = db.getAllCharacters() // Получите список CharacterDB из базы данных
+        val characterList = db.getAllCharacters()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewFavorites)
-        val adapter = FavoritesAdapter(characterList)
+        val adapter = MyAdapter(characterList, this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }

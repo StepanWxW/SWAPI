@@ -9,6 +9,7 @@
     <string name="add">Добавить в избранное</string>
     <string name="go_to_favorite">Перейти в избранное</string>
     <string name="to_main">На главную</string>
+    <string name="featured_characters">Избранные персонажи:</string>
     <string-array name="options">
         <item>персонажу</item>
         <item>звездолету</item>
