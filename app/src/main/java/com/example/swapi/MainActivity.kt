@@ -1,7 +1,7 @@
 package com.example.swapi
 
 import StarWarsApiClient
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.swapi.model.Character
 import kotlinx.coroutines.launch
 
 
@@ -24,90 +23,81 @@ class MainActivity : AppCompatActivity() {
     private lateinit var enterNameTextView: EditText
     private lateinit var startSearchButton: Button
     private lateinit var spinner: Spinner
-    private val context = this
-
-    //    private val itemList = mutableListOf<Item>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MyAdapter
+    private lateinit var messageTextView: TextView
 
-    private lateinit var character: Character
-
-//    private lateinit var characterLayout: LinearLayout
-//    private lateinit var characterNameTextView: TextView
-//    private lateinit var genderTextView: TextView
-//    private lateinit var countStarshipsTextView: TextView
-//
-//    private lateinit var starshipLayout: LinearLayout
-//    private lateinit var starshipNameTextView: TextView
-//    private lateinit var modelTextView: TextView
-//    private lateinit var manufacturerTextView: TextView
-//    private lateinit var passengersTextView: TextView
-
+    private val context = this
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         enterNameTextView = findViewById(R.id.enterNameTextView)
         startSearchButton = findViewById(R.id.startSearchButton)
-//        starshipLayout = findViewById(R.id.starshipLayout)
-//        characterLayout = findViewById(R.id.characterLayout)
         spinner = findViewById(R.id.spinner)
-
+        messageTextView = findViewById(R.id.textViewMessage)
         recyclerView = findViewById(R.id.recyclerView)
-
-
-//        val nameTextView = characterLayout.findViewById<TextView>(R.id.nameTextView)
-//        val genderTextView = characterLayout.findViewById<TextView>(R.id.genderTextView)
-//        val countStarshipsTextView = characterLayout.findViewById<TextView>(R.id.countStarshipsTextView)
-
         apiClient = StarWarsApiClient()
 
         startSearchButton.setOnClickListener {
             val selectedOption = spinner.selectedItem as String
             val searchString = enterNameTextView.text.toString()
-            if (selectedOption == "персонажу") {
-                lifecycleScope.launch {
-                    try {
-                        val characterResponse = apiClient.searchCharacters(searchString)
-                        if (characterResponse.results.isNotEmpty()) {
-                            recyclerView.adapter = null
-                            adapter = MyAdapter(characterResponse.results, context)
-                            recyclerView.adapter = adapter
-
-                            recyclerView.layoutManager = LinearLayoutManager(context)
+            if (searchString.length < 2) {
+                showMessage("Введите больше 2 символов")
+            } else {
+                if (selectedOption == "персонажу") {
+                    lifecycleScope.launch {
+                        try {
+                            val characterResponse = apiClient.searchCharacters(searchString)
+                            if (characterResponse.results.isNotEmpty()) {
+                                showRecyclerView()
+                                adapter = MyAdapter(characterResponse.results, context)
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(context)
+                            } else{
+                                showMessage("Нет таких персонажей")
+                            }
+                        } catch (e: Exception) {
+                            showMessage(e)
                         }
-                    } catch (e: Exception) {
-                        println("ошибка +$e")
                     }
-
-
-//                    if(characterResponse.results.isNotEmpty()) {
-//                        character = characterResponse.results[0]
-//                        starshipLayout.visibility = View.GONE
-//                        characterLayout.visibility = View.VISIBLE
-//                        nameTextView.text = character.name
-//                        genderTextView.text = character.gender
-//                        countStarshipsTextView.text = character.starships.size.toString()
-//                    }
                 }
-            }
-            if (selectedOption == "звездолету") {
-                lifecycleScope.launch {
-                    try {
-                        val starshipResponse = apiClient.searchStarships(searchString)
-                        if (starshipResponse.results.isNotEmpty()) {
-                            recyclerView.adapter = null
-                            val adapter = MyStarshipAdapter(starshipResponse.results, context)
-                            recyclerView.adapter = adapter
-
-                            recyclerView.layoutManager = LinearLayoutManager(context)
+                if (selectedOption == "звездолету") {
+                    lifecycleScope.launch {
+                        try {
+                            val starshipResponse = apiClient.searchStarships(searchString)
+                            if (starshipResponse.results.isNotEmpty()) {
+                                showRecyclerView()
+                                val adapter = MyStarshipAdapter(starshipResponse.results, context)
+                                recyclerView.adapter = adapter
+                                recyclerView.layoutManager = LinearLayoutManager(context)
+                            } else{
+                                showMessage("Нет таких звезлотелов")
+                            }
+                        } catch (e: Exception) {
+                            showMessage(e)
                         }
-                    } catch (e: Exception) {
-                        println("ошибка +$e")
                     }
                 }
             }
         }
+    }
+
+    private fun showMessage(e: Exception) {
+        showMessage("Проверьте соединение с интернетом")
+        println("ошибка +$e")
+    }
+
+    private fun showMessage(message: String) {
+        messageTextView.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+        messageTextView.text = message
+    }
+
+    private fun showRecyclerView() {
+        messageTextView.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 
     fun onFavoritesButtonClick(view: View) {

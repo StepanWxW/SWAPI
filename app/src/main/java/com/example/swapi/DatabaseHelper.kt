@@ -110,4 +110,10 @@ class DatabaseHelper(context: Context) :
         db.close()
         return starships
     }
+    fun clearAllTables() {
+        val db = writableDatabase
+        db.execSQL("DELETE FROM $TABLE_NAME_CHARACTERS")
+        db.execSQL("DELETE FROM $TABLE_NAME_STARSHIPS")
+        db.close()
+    }
 }

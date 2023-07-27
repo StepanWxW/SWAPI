@@ -8,13 +8,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class FavoritesActivity : AppCompatActivity() {
+
+    val db = DatabaseHelper(this)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
 
-        val db = DatabaseHelper(this)
+        setupUI()
+    }
 
+    fun onOnMainButtonClick(view: View) {
+        finish()
+    }
+
+    fun onClearButtonClick(view: View) {
+        db.clearAllTables()
+        setupUI()
+    }
+    // Добавить показ пустого сообщения
+    private fun setupUI() {
         val characterList = db.getAllCharacters()
         val recyclerViewCharacter = findViewById<RecyclerView>(R.id.recyclerViewCharacter)
         val characterAdapter = MyAdapter(characterList, this)
@@ -26,9 +39,5 @@ class FavoritesActivity : AppCompatActivity() {
         val starshipsAdapter = MyStarshipAdapter(starshipsList, this)
         recyclerViewStarships.adapter = starshipsAdapter
         recyclerViewStarships.layoutManager = LinearLayoutManager(this)
-    }
-
-    fun onOnMainButtonClick(view: View) {
-        finish()
     }
 }

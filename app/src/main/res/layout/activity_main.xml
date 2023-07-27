@@ -64,6 +64,16 @@
         app:layout_constraintStart_toEndOf="@+id/enterNameTextView"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
+    <TextView
+        android:id="@+id/textViewMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/startSearchButton"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/startSearchButton"
+        app:layout_constraintTop_toBottomOf="@+id/startSearchButton" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -76,6 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/startSearchButton"
         tools:ignore="MissingConstraints" />
 
+
     <Button
         android:id="@+id/buttonFavoritesResult"
         android:layout_width="wrap_content"
@@ -86,5 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:onClick="onFavoritesButtonClick"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
