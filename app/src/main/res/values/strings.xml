@@ -12,6 +12,9 @@
     <string name="featured_characters">Избранные персонажи:</string>
     <string name="Starships">Зведолеты</string>
     <string name="сlear_favorites">Очистить избранное</string>
+    <string name="enter_name">Введите название персонажа или звездолета</string>
+    <string name="start_search">Начать поиск</string>
+    <string name="serch_to">Искать по:</string>
     <string-array name="options">
         <item>персонажу</item>
         <item>звездолету</item>

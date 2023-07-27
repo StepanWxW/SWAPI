@@ -12,6 +12,5 @@ interface ApiService {
 
     @GET("starships/")
     suspend fun searchStarships(@Query("search") query: String): StarshipResponse
-//    @GET("planets/")
-//    suspend fun searchPlanets(@Query("search") query: String): PlanetResponse
+
 }

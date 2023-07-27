@@ -25,9 +25,5 @@ class StarWarsApiClient {
     suspend fun searchStarships(query: String): StarshipResponse {
         return apiService.searchStarships(query)
     }
-
-//    suspend fun searchPlanets(query: String): PlanetResponse {
-//        return apiService.searchPlanets(query)
-//    }
 }
 
