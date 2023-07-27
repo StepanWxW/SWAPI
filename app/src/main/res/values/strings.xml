@@ -11,7 +11,7 @@
     <string name="to_main">На главную</string>
     <string name="featured_characters">Избранные персонажи:</string>
     <string name="Starships">Зведолеты</string>
-    <string name="сlear_favorites">Отчистить избранное</string>
+    <string name="сlear_favorites">Очистить избранное</string>
     <string-array name="options">
         <item>персонажу</item>
         <item>звездолету</item>

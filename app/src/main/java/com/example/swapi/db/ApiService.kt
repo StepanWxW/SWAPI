@@ -1,5 +1,7 @@
-package com.example.swapi.model
+package com.example.swapi.db
 
+import com.example.swapi.db.modeldb.CharacterResponse
+import com.example.swapi.db.modeldb.StarshipResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

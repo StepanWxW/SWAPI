@@ -1,4 +1,6 @@
-package com.example.swapi.model
+package com.example.swapi.db.modeldb
+
+import com.example.swapi.model.Character
 
 data class CharacterResponse(
     val count: Int,

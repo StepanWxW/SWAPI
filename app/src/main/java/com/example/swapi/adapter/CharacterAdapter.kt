@@ -1,4 +1,4 @@
-package com.example.swapi
+package com.example.swapi.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,9 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.swapi.R
+import com.example.swapi.db.DatabaseHelper
 import com.example.swapi.model.Character
 
-class MyAdapter(private val charactersList: List<Character>, private val context: Context) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class CharacterAdapter(private val charactersList: List<Character>, private val context: Context) : RecyclerView.Adapter<CharacterAdapter.MyViewHolder>() {
 
     private val db = DatabaseHelper(context)
 
@@ -22,7 +24,7 @@ class MyAdapter(private val charactersList: List<Character>, private val context
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_layout, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.character_layout, parent, false)
         return MyViewHolder(itemView)
     }
 

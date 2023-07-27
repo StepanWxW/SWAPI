@@ -1,7 +1,7 @@
-
-import com.example.swapi.model.ApiService
-import com.example.swapi.model.CharacterResponse
-import com.example.swapi.model.StarshipResponse
+package com.example.swapi.network
+import com.example.swapi.db.ApiService
+import com.example.swapi.db.modeldb.CharacterResponse
+import com.example.swapi.db.modeldb.StarshipResponse
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
 

@@ -1,4 +1,6 @@
-package com.example.swapi.model
+package com.example.swapi.db.modeldb
+
+import com.example.swapi.model.Starship
 
 data class StarshipResponse(
     val count: Int,

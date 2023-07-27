@@ -1,6 +1,6 @@
 package com.example.swapi
 
-import StarWarsApiClient
+import com.example.swapi.network.StarWarsApiClient
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +13,8 @@ import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.swapi.adapter.CharacterAdapter
+import com.example.swapi.adapter.StarshipAdapter
 import kotlinx.coroutines.launch
 
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var startSearchButton: Button
     private lateinit var spinner: Spinner
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MyAdapter
+    private lateinit var adapter: CharacterAdapter
     private lateinit var messageTextView: TextView
 
     private val context = this
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                             val characterResponse = apiClient.searchCharacters(searchString)
                             if (characterResponse.results.isNotEmpty()) {
                                 showRecyclerView()
-                                adapter = MyAdapter(characterResponse.results, context)
+                                adapter = CharacterAdapter(characterResponse.results, context)
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(context)
                             } else{
@@ -69,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                             val starshipResponse = apiClient.searchStarships(searchString)
                             if (starshipResponse.results.isNotEmpty()) {
                                 showRecyclerView()
-                                val adapter = MyStarshipAdapter(starshipResponse.results, context)
+                                val adapter = StarshipAdapter(starshipResponse.results, context)
                                 recyclerView.adapter = adapter
                                 recyclerView.layoutManager = LinearLayoutManager(context)
                             } else{

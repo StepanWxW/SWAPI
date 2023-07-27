@@ -1,4 +1,4 @@
-package com.example.swapi
+package com.example.swapi.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,9 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.swapi.R
+import com.example.swapi.db.DatabaseHelper
 import com.example.swapi.model.Starship
 
-class MyStarshipAdapter(private val starshipsList: List<Starship>, private val context: Context) : RecyclerView.Adapter<MyStarshipAdapter.MyStarshipViewHolder>() {
+class StarshipAdapter(private val starshipsList: List<Starship>, private val context: Context) : RecyclerView.Adapter<StarshipAdapter.MyStarshipViewHolder>() {
 
     private val db = DatabaseHelper(context)
 
@@ -37,7 +39,7 @@ class MyStarshipAdapter(private val starshipsList: List<Starship>, private val c
             holder.addToFavoritesButtonSH.setOnClickListener {
                 val starship = Starship(currentItem.name, currentItem.model, currentItem.manufacturer, currentItem.passengers)
                 db.insertStarship(starship)
-                Toast.makeText(context, "Добавили в избранное", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Добавили в избранное", Toast.LENGTH_SHORT).show()
             }
         } else {
             holder.addToFavoritesButtonSH.visibility = View.GONE

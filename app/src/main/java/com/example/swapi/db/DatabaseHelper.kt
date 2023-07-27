@@ -1,4 +1,4 @@
-package com.example.swapi
+package com.example.swapi.db
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
